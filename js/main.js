@@ -103,11 +103,34 @@ function showProductModal(product) {
     modal.innerHTML = `
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="modal-body">
-                <img src="${product.image}" alt="${product.name}" class="modal-product-image">
-                <h3>${product.name}</h3>
-                <p class="price">${product.price}</p>
-                <button class="btn btn-primary add-to-cart">Добавить в корзину</button>
+            <div class="modal-body row">
+                <div class="wrap col-6">
+                    <div class="modal-image-container">
+                        <img src="${product.image}" alt="${product.name}" class="modal-product-image">
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Мягкое изголовье</strong></li>
+                            <li><strong>Oтсутствие острых углов</strong></li>
+                            <li><strong>Замена ножек</strong></li>
+                            <li><strong>Съемный чехол</strong></li>
+                            <li><strong>Подъемный механизм</strong></li>
+                            <li><strong>Долговечные газлифты</strong></li>
+                            <li><strong>Надёжный и безопасный механизм</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-details-container col-6">
+                    <h3>${product.name}</h3>
+                    <p class="description">
+                        Выбирая кровать, мы обращаем внимание на три ключевых момента: 
+                        красота, надежность и удобство. Кровать должна эстетично выглядеть 
+                        и хорошо вписываться в интерьер комнаты. Она должна быть сделана 
+                        из безопасных современных материалов, иметь качественную сборку.
+                    </p>
+                    <p class="price"><strong>${product.price}</strong></p>
+                    <button class="btn btn-primary add-to-cart">Добавить в корзину</button>
+                </div>
             </div>
         </div>
     `;
@@ -131,26 +154,68 @@ function showProductModal(product) {
         }
         .modal-content {
             background: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 8px;
-            max-width: 500px;
+            max-width: 700px; /* Увеличена максимальная ширина */
             width: 90%;
             position: relative;
+            display: flex; /* Используем flexbox для контента */
+            flex-direction: column; /* Элементы в столбец по умолчанию */
         }
-        .close-modal {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            font-size: 24px;
-            cursor: pointer;
+        .modal-body {
+            display: flex; /* Используем flexbox для тела модального окна */
+            align-items: flex-start; /* Выравнивание элементов по верху */
+            gap: 20px; /* Пространство между изображением и деталями */
+            width: 100%;
+        }
+        .modal-image-container {
+            flex: 1; /* Занимает доступное пространство */
+            max-width: 50%; /* Ограничиваем ширину контейнера изображения */
         }
         .modal-product-image {
             max-width: 100%;
             height: auto;
+            display: block; /* Убираем лишние отступы */
+        }
+        .modal-details-container {
+            flex: 1; /* Занимает доступное пространство */
+            max-width: 50%; /* Ограничиваем ширину контейнера деталей */
+            text-align: left; /* Выравнивание текста по левому краю */
+        }
+        .modal-details-container h3 {
+            margin-top: 0; /* Убираем верхний отступ у заголовка */
+        }
+        .modal-details-container .price {
+            font-size: 1.2em; /* Увеличиваем размер шрифта цены */
             margin-bottom: 15px;
         }
-        .modal-body {
-            text-align: center;
+        .modal-details-container .description {
+            margin-bottom: 15px;
+            color: #666; /* Цвет текста описания */
+            font-size: 0.9em;
+        }
+        .close-modal {
+            position: absolute;
+            right: 15px;
+            top: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            line-height: 1;
+        }
+        /* Адаптивность для маленьких экранов */
+        @media (max-width: 600px) {
+            .modal-body {
+                flex-direction: column; /* Элементы в столбец на маленьких экранах */
+                align-items: center; /* Центрируем элементы */
+                text-align: center; /* Центрируем текст */
+            }
+            .modal-image-container,
+            .modal-details-container {
+                max-width: 100%; /* Занимают всю ширину */
+            }
+             .modal-details-container {
+                text-align: center; /* Центрируем текст в деталях */
+            }
         }
     `;
     document.head.appendChild(styles);

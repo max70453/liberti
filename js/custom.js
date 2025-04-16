@@ -158,7 +158,7 @@ console.log('maketimer');
 		 autoplayHoverPause: true,
 		 autoplayTimeout: 5000,
 		 nav: true,
-		 navText: ["Следующий", "Предыдущий"],
+		 navText: ["Назад", "Вперед"],
 		 smartSpeed: 1000,
 		 responsive: {
 		   0: {
