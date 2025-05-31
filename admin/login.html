@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в админ-панель - Liberti</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-login {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .admin-login h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .admin-login form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .admin-login input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .admin-login button {
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .admin-login button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login">
+        <h1>Вход в админ-панель</h1>
+        <form id="adminLoginForm">
+            <input type="text" id="username" placeholder="Имя пользователя" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="submit">Войти</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Здесь обычно делается API-запрос для проверки учетных данных
+            // Пока просто перенаправляем на панель управления
+            if (username && password) {
+                window.location.href = 'dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html> 

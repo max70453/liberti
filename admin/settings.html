@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки - Liberti</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .admin-sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+        }
+        .admin-content {
+            flex: 1;
+            padding: 20px;
+            background: #f5f6fa;
+        }
+        .admin-sidebar h2 {
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .admin-nav {
+            list-style: none;
+            padding: 0;
+        }
+        .admin-nav li {
+            margin-bottom: 10px;
+        }
+        .admin-nav a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        .admin-nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .settings-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .settings-section h2 {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background: #c82333;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .toggle-slider {
+            background-color: #2196F3;
+        }
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        .color-picker {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .color-option.active {
+            border-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <h2>Панель управления</h2>
+            <ul class="admin-nav">
+                <li><a href="dashboard.html">Обзор</a></li>
+                <li><a href="products.html">Товары</a></li>
+                <li><a href="orders.html">Заказы</a></li>
+                <li><a href="users.html">Пользователи</a></li>
+                <li><a href="settings.html">Настройки</a></li>
+                <li><a href="login.html">Выход</a></li>
+            </ul>
+        </div>
+        <div class="admin-content">
+            <h1>Настройки</h1>
+
+            <!-- Основные настройки -->
+            <div class="settings-section">
+                <h2>Основные настройки</h2>
+                <form id="generalSettingsForm">
+                    <div class="form-group">
+                        <label for="siteName">Название сайта</label>
+                        <input type="text" id="siteName" value="Liberti">
+                    </div>
+                    <div class="form-group">
+                        <label for="siteDescription">Описание сайта</label>
+                        <textarea id="siteDescription">Интернет-магазин модной одежды</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Контактный email</label>
+                        <input type="email" id="contactEmail" value="info@liberti.ru">
+                    </div>
+                    <div class="form-group">
+                        <label for="contactPhone">Контактный телефон</label>
+                        <input type="tel" id="contactPhone" value="+7 (999) 123-45-67">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+
+            <!-- Настройки внешнего вида -->
+            <div class="settings-section">
+                <h2>Внешний вид</h2>
+                <form id="appearanceSettingsForm">
+                    <div class="form-group">
+                        <label>Основной цвет</label>
+                        <div class="color-picker">
+                            <div class="color-option active" style="background: #2c3e50;" onclick="selectColor(this, '#2c3e50')"></div>
+                            <div class="color-option" style="background: #e74c3c;" onclick="selectColor(this, '#e74c3c')"></div>
+                            <div class="color-option" style="background: #27ae60;" onclick="selectColor(this, '#27ae60')"></div>
+                            <div class="color-option" style="background: #3498db;" onclick="selectColor(this, '#3498db')"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Темная тема</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkTheme">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+
+            <!-- Настройки уведомлений -->
+            <div class="settings-section">
+                <h2>Уведомления</h2>
+                <form id="notificationSettingsForm">
+                    <div class="form-group">
+                        <label>Email-уведомления</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <small>Получать уведомления о новых заказах и сообщениях</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Уведомления в браузере</label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="browserNotifications">
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <small>Показывать уведомления в браузере</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+
+            <!-- Системные настройки -->
+            <div class="settings-section">
+                <h2>Системные настройки</h2>
+                <form id="systemSettingsForm">
+                    <div class="form-group">
+                        <label for="itemsPerPage">Количество элементов на странице</label>
+                        <select id="itemsPerPage">
+                            <option value="10">10</option>
+                            <option value="25" selected>25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateFormat">Формат даты</label>
+                        <select id="dateFormat">
+                            <option value="DD.MM.YYYY" selected>DD.MM.YYYY</option>
+                            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="timezone">Часовой пояс</label>
+                        <select id="timezone">
+                            <option value="Europe/Moscow" selected>Москва (UTC+3)</option>
+                            <option value="Europe/London">Лондон (UTC+0)</option>
+                            <option value="America/New_York">Нью-Йорк (UTC-5)</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                </form>
+            </div>
+
+            <!-- Опасная зона -->
+            <div class="settings-section">
+                <h2>Опасная зона</h2>
+                <div class="form-group">
+                    <button class="btn btn-danger" onclick="clearCache()">Очистить кэш</button>
+                    <small>Удаляет все временные файлы и кэш системы</small>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-danger" onclick="resetSettings()">Сбросить настройки</button>
+                    <small>Возвращает все настройки к значениям по умолчанию</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Выбор цвета
+        function selectColor(element, color) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+            // Здесь можно добавить логику применения цвета
+        }
+
+        // Очистка кэша
+        function clearCache() {
+            if (confirm('Вы уверены, что хотите очистить кэш?')) {
+                alert('Кэш успешно очищен');
+            }
+        }
+
+        // Сброс настроек
+        function resetSettings() {
+            if (confirm('Вы уверены, что хотите сбросить все настройки? Это действие нельзя отменить.')) {
+                alert('Настройки сброшены к значениям по умолчанию');
+            }
+        }
+
+        // Обработка форм
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Здесь будет логика сохранения настроек
+                alert('Настройки сохранены');
+            });
+        });
+
+        // Инициализация переключателей
+        document.querySelectorAll('.toggle-switch input').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                // Здесь будет логика обработки изменений
+                console.log(`${this.id} changed to ${this.checked}`);
+            });
+        });
+    </script>
+</body>
+</html> 
